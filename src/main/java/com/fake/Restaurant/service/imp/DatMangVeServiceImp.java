@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -19,12 +20,14 @@ public class DatMangVeServiceImp implements DatMangVeService {
     private KhachHangService khachHangService;
     @Override
     public boolean luu_thong_tin_dat_ve(DatMangVe datMangVe,String maKhachHang) {
-        KhachHang khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
+        List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
         if (khachHang == null){
             return false;
         }
-        datMangVe.setKhachHang(khachHang);
-        repoDatMangVe.save(datMangVe);
+        khachHang.forEach(kh ->{
+            datMangVe.setKhachHang(kh);
+            repoDatMangVe.save(datMangVe);
+        });
         return true;
     }
 }

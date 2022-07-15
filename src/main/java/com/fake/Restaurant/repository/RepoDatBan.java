@@ -12,8 +12,7 @@ import java.util.List;
 
 public interface RepoDatBan extends JpaRepository<DatBan, DatBanID> {
     @Query(value = "select d from DatBan d where " +
-            "d.thoiGianSuDung = :time " +
-            "and d.khachHang = null")
+            "d.thoiGianSuDung = :time")
     List<DatBan> findAllByGioAn(@Param("time") String time);
     List<DatBan> findByKhachHang(KhachHang khachHang);
     DatBan findByThoiGianSuDungAndSoLuongNguoi(String thoiGianSuDung,int soLuongNguoi);

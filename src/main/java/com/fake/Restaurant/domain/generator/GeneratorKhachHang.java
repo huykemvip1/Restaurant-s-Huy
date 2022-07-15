@@ -43,6 +43,7 @@ public class GeneratorKhachHang implements IdentifierGenerator {
                 khachHang.setSdt( resultSet.getString("so_dien_thoai"));
                 khachHangs.add(khachHang);
             }
+            log.info("{}",khachHangs);
             khachHangs.stream()
                     .sorted(new Comparator<KhachHang>() {
                         @Override
@@ -55,6 +56,7 @@ public class GeneratorKhachHang implements IdentifierGenerator {
             throw new RuntimeException(e);
         }
         KhachHang khachHang= (KhachHang) object;
+        log.info("{}",khachHangs);
         if (khachHangs.size() <1){
 
         }else{

@@ -2,6 +2,7 @@ package com.fake.Restaurant;
 
 import com.fake.Restaurant.domain.LoaiMonAn;
 import com.fake.Restaurant.domain.MonAn;
+import com.fake.Restaurant.repository.RepoDatBan;
 import com.fake.Restaurant.repository.RepoLoaiMonAn;
 import com.fake.Restaurant.repository.RepoMonAn;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,9 @@ public class RestaurantApplication implements CommandLineRunner {
 	}
 	private RepoLoaiMonAn repoLoaiMonAn;
 	private RepoMonAn repoMonAn;
+	private RepoDatBan repoDatBan;
 	@Override
 	public void run(String... args) throws Exception {
-
 		/*
 		Optional<LoaiMonAn> loaiMonAn=repoLoaiMonAn.findById(3);
 		File file=new File("F:/Anh_Code/Restaurant/so-da-phuc-bon-tu.jpg");

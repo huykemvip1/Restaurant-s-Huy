@@ -108,7 +108,7 @@ public class ControllerCart {
     @GetMapping("/wait/{maKhachHang}")
     public String waitConfirm(@PathVariable("maKhachHang") String maKhachHang
             ,HttpServletRequest request){
-        KhachHang khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
+        List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
 
         dataCartService.xoa_sessionId(request.getRemoteAddr());
 

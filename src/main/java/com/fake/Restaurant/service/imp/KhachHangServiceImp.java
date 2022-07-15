@@ -73,12 +73,13 @@ public class KhachHangServiceImp implements KhachHangService {
     }
 
     @Override
-    public KhachHang tim_khach_hang_ma(String maKhachHang) {
-        Optional<KhachHang> khachHang=repoKhachHang.findByMaKhachHang(maKhachHang);
-       if (khachHang.isEmpty()){
+    public List<KhachHang> tim_khach_hang_ma(String maKhachHang) {
+        log.info("sai");
+        List<KhachHang> khachHang=repoKhachHang.findByMaKhachHang(maKhachHang);
+       if (khachHang == null){
            return null;
        }else{
-           return khachHang.get();
+           return khachHang;
        }
     }
 

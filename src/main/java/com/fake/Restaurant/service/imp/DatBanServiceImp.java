@@ -26,7 +26,12 @@ public class DatBanServiceImp implements DatBanService {
     private KhachHangService khachHangService;
     @Override
     public List<DatBan> find_ban_trong(String time) {
-        return repoDatBan.findAllByGioAn(time);
+        return repoDatBan.
+                findAllByGioAn(time).stream()
+                .filter(datBan -> {
+                    return datBan.getKhachHang().size() < 1;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -47,7 +52,7 @@ public class DatBanServiceImp implements DatBanService {
                             }
                         }
                        if (index == list.size()){
-                           log.info("{}---{}",index,list.size());
+
                            list.add(datBan);
                        }
                     }
@@ -62,12 +67,12 @@ public class DatBanServiceImp implements DatBanService {
                 datBan.getThoiGianSuDung(),
                 datBan.getSoLuongNguoi()
         );
-        KhachHang khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
+        List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
         if (khachHang == null){
             return false;
         }else {
-            db.setKhachHang(khachHang);
-            repoDatBan.save(db);
+                db.setKhachHang(khachHang);
+                repoDatBan.save(db);
             return true;
         }
     }

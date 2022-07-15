@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface KhachHangService {
     KhachHang an_sdt(KhachHang khachHang);
     KhachHang luu_ttkh_tu_DataCart(List<DataCart> dataCarts,KhachHang khachHang);
-    KhachHang tim_khach_hang_ma(String maKhachHang);
+    List<KhachHang> tim_khach_hang_ma(String maKhachHang);
 }

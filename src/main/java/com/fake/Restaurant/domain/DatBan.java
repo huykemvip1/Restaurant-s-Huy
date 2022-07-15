@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,11 +34,16 @@ public class DatBan implements Serializable {
     @Column(name = "so_luong_nguoi")
     private int soLuongNguoi;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumns({
-            @JoinColumn(name = "id_khach_hang"),
-            @JoinColumn(name = "id_do_an")
-    }
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "khach_hang_dat_ban",
+        joinColumns = {
+                @JoinColumn(name = "ma_ban"),
+                @JoinColumn(name = "thoi_gian_dung")
+        },
+        inverseJoinColumns = {
+                @JoinColumn(name = "ma_do_an"),
+                @JoinColumn(name = "ma_khach_hang")
+        }
     )
-    private KhachHang khachHang;
+    private List<KhachHang> khachHang;
 }
