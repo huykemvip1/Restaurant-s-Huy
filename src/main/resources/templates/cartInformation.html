@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant's Huy</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/cartInformation.css}">
+    <link rel="stylesheet" th:href="@{/css/cartProduct.css}">
+    <script th:src="@{https://kit.fontawesome.com/843b0b6aa6.js}" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+    <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+    <div class="sub_nav">
+        <ul>
+            <li><a th:href="@{/home}">Trang chủ</a></li>
+            <li><a th:href="@{/product}">Sản Phẩm</a></li>
+            <li><a href="/comment">Bình luận</a></li>
+            <li><a href="@{/home#contact}">Liên hệ với tôi</a></li>
+        </ul>
+        <div class="cart">
+            <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+            <div class="quantity" th:text="${soLuong}"></div>
+        </div>
+        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+    </div>
+</div>
+<div class="progress">
+    <div class="step step_1">
+        <h1>1</h1>
+    </div>
+    <div class="step step_2">
+        <h1>2</h1>
+    </div>
+    <div class="step step_3">
+        <h1>3</h1>
+    </div>
+</div>
+<form id="customer" th:action="@{/cart/information}" method="post" th:object="${customer}">
+    <div id="fullname" class="form_block">
+        <label ><b>Họ và tên</b></label><br>
+        <input type="text" class="form-control" th:field="*{ten}" placeholder="Nguyễn Văn A">
+        <p></p>
+    </div>
+    <div id="phone" class="form_block">
+        <label ><b>Số điện thoại</b></label><br>
+        <input type="text" class="form-control" th:field="*{sdt}" placeholder="0123456789">
+        <p></p>
+    </div>
+    <div id="email" class="form_block">
+        <label ><b>Email</b></label><br>
+        <input type="email" class="form-control" th:field="*{email}" placeholder="nva@gmail.com">
+        <p></p>
+    </div>
+    <div id="number_bank" class="form_block">
+        <label ><b>Tên thẻ ngân hàng</b></label><br>
+        <input type="text" class="form-control" th:field="*{tenThe}" placeholder="108098382932">
+        <p></p>
+    </div>
+    <div class="btn">
+        <a th:href="@{/cart/sp}"><button type="button" class="btn_turn">Quay lại</button></a>
+        <button type="submit" class="btn_continue">Tiếp theo</button>
+    </div>
+</form>
+
+
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/cartInformation.js}"></script>
+<script th:src="@{/js/header.js}"></script>
+</body>
+</html>

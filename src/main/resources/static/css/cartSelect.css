@@ -1,0 +1,172 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(to right,rgb(71, 192, 222),rgb(19, 7, 241));
+    font-family: 'Readex Pro', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+.progress{
+    display: flex;
+    position: relative;
+    background-color: rgb(219, 210, 210);
+    height: 50px;
+    width: 900px;
+    margin: 50px auto;
+    justify-content: center;
+    gap: 300px;
+    border-radius:50px;
+}
+.progress .step{
+    position: relative;
+    border: black 10px solid;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    color: black;
+    text-align: center;
+    background-color: rgb(219, 210, 210);
+    overflow: hidden;
+    bottom: 25px;
+}
+
+.progress .step h1{
+    font-size: 55px;
+}
+
+
+
+.progress .step h1{
+    font-size: 55px;
+    text-align: center;
+}
+
+.progress .step_1{
+    background-color: green;
+}
+
+
+.to_selects{
+    position: fixed;
+    right: 30px;
+    font-size: 50px;
+    bottom: 10px;
+    cursor: pointer;
+}
+.to_green{
+    background-color: green;
+}
+
+h1{
+    text-align: center;
+}
+.container_mode{
+    background-color: red;
+    border-radius: 20px;
+    width: 500px;
+    height: 150px;
+    text-align: center;
+    margin: 20px auto;
+}
+#mode{
+    margin-bottom: 60px;
+    text-align: center;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+}
+.container_mode .btn_mode{
+    border-radius: 10px;
+}
+#mode option{
+    border-bottom-left-radius: 50px;
+}
+#mode,
+.container_mode .btn_mode{
+    width: 200px;
+    height: 30px;
+    border: solid green 1px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+}
+.container_mode .btn_mode:hover{
+    transform: scale(1.3);
+}
+
+
+
+#select_order{
+    display: none;
+    position: relative;
+    background-color: red;
+    width: 500px;
+    height: 450px;
+    margin: 10px auto;
+    border-radius: 20px;
+}
+#select_order h3,
+#select_book h3{
+    text-align: center;
+}
+
+#select_order form div,
+#select_book form div{
+    padding: 30px 10px;
+}
+#select_order form input{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    right: 70px;
+    border-radius: 20px;
+    border: solid 2px green;
+}
+#select_order form button,
+#select_book form button{
+    position: relative;
+    background-color: green;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    left: 180px;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+}
+#select_order form button:hover,
+#select_book form button:hover{
+    transform: scale(1.3);
+}
+
+#select_book{
+    display: none;
+    position: relative;
+    background-color: red;
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    border-radius: 20px;
+}
+#select_book select{
+    font-size: 25px;
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    right: 70px;
+    border-radius: 20px;
+    border: solid 2px green;
+}
+
+.hide{
+    display: none;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant's Huy</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/cartSelect.css}">
+    <script src="https://kit.fontawesome.com/843b0b6aa6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+    <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+    <div class="sub_nav">
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="/Restaurant/product">Sản Phẩm</a></li>
+            <li><a href="#comment">Bình luận</a></li>
+            <li><a href="#contact">Liên hệ với tôi</a></li>
+        </ul>
+        <div class="cart">
+            <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+            <div class="quantity">0</div>
+        </div>
+        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+    </div>
+</div>
+
+<div class="progress">
+    <div class="step step_1">
+        <h1>1</h1>
+    </div>
+    <div class="step step_2">
+        <h1>2</h1>
+    </div>
+    <div class="step step_3">
+        <h1>3</h1>
+    </div>
+</div>
+<h1>Lựa chọn đặt bàn hoặc Đặt mang về</h1>
+<div class="container_mode">
+    <select name="mode" id="mode">
+        <option value="order">Đặt mang về</option>
+        <option value="book">Đặt bàn</option>
+    </select><br>
+    <button class="btn_mode">Tiếp theo</button>
+</div>
+<div id="select_order">
+    <h3>Bạn đã chọn dịch vụ đặt mang về</h3>
+    <form th:action="@{'/cart/order/'+${maKhacHang}}" method="post" th:object="${datMangVe}">
+        <div id="so_nha">
+            <label>Số nhà :</label>
+            <input type="text" th:field="*{soNha}"  placeholder="13">
+            <p></p>
+        </div>
+        <div id="duong_pho">
+            <label>Đường/Phố :</label>
+            <input type="text" th:field="*{duongPho}"  placeholder="Hồ Tùng Mậu">
+            <p></p>
+        </div>
+        <div id="phuong">
+            <label>Phường :</label>
+            <input type="text" th:field="*{phuong}"  placeholder="Nam Từ Liêm">
+            <p></p>
+        </div>
+        <div id="quan">
+            <label>Quận :</label>
+            <input type="text" th:field="*{quan}"  placeholder="Từ Liêm">
+            <p></p>
+        </div>
+        <button>Xác nhận</button>
+    </form>
+</div>
+<div id="select_book">
+    <h3>Bạn đã chọn dịch vụ đặt bàn</h3>
+    <form th:action="@{'/cart/book/'+${maKhachHang}}" method="post" th:object="${datBan}">
+        <div id="gio_an">
+            <label>Giờ ăn :</label>
+            <select th:field="*{thoiGianSuDung}" >
+                <option th:each="db : ${datBans}"  th:value="${db.getThoiGianSuDung()}"
+                        th:text="${#strings.substring(db.getThoiGianSuDung(),11,16)}"></option>
+            </select>
+        </div>
+        <div id="so_luong_nguoi">
+            <label>Số lượng người :</label>
+            <select th:field="*{soLuongNguoi}" ></select>
+        </div>
+        <button>Xác nhận</button>
+    </form>
+</div>
+
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/cartSelect.js}"></script>
+<script th:src="@{/js/header.js}"></script>
+</body>
+</html>

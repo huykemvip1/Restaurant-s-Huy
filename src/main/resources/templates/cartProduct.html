@@ -1,0 +1,92 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Restaurant's Huy</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/cartProduct.css}">
+    <script th:src="@{https://kit.fontawesome.com/843b0b6aa6.js}" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+    <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+    <div class="sub_nav">
+        <ul>
+            <li><a th:href="@{/home}">Trang chủ</a></li>
+            <li><a th:href="@{/product}">Sản Phẩm</a></li>
+            <li><a href="/comment">Bình luận</a></li>
+            <li><a href="#contact">Liên hệ với tôi</a></li>
+        </ul>
+        <div class="cart">
+            <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+            <div class="quantity" th:text="${soLuong}"></div>
+        </div>
+        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+    </div>
+</div>
+<div class="progress">
+    <div class="step step_1">
+        <h1>1</h1>
+    </div>
+    <div class="step step_2">
+        <h1>2</h1>
+    </div>
+    <div class="step step_3">
+        <h1>3</h1>
+    </div>
+</div>
+
+<div class="dashboard_customer">
+    <div>
+        <div  th:class="${#lists.size(monAns) < 1} ? require_product : hide">
+            <h1>Bạn Chưa có sản phẩm nào </h1>
+            <a th:href="@{/product}"><button>Quay về sản phẩm</button></a>
+        </div>
+        <div th:class="${#lists.size(monAns) < 1} ? hide : products_customer" th:each="sp : ${monAns}">
+            <input type="hidden" th:value="${sp.getMaMonAn()}">
+            <input type="hidden" th:value="${sp.getTongSoLuong()-sp.getSoLuongSd()}">
+            <h4 th:text="${sp.getTen()}"></h4>
+            <img th:src="@{'/photos/memory-product/'+${sp.getTen()}+'.jpg'}" alt="">
+            <h5>Gia tien : <span th:text="${sp.getGiaTien()}"></span></h5>
+            <a th:href="@{'/cart/delete/'+${sp.getMaMonAn()}}"><i class="fa-solid fa-trash-can"></i></a>
+            <div class="btn_quantity">
+                <button class="btn_left"><i class="fa-solid fa-minus"></i></button>
+                <h5>1</h5>
+                <button class="btn_right"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="products_information">
+        <table>
+            <tr>
+                <th>Tên món ăn</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+            </tr>
+            <tr th:each="sp : ${monAns}">
+                <th class="ten_sp" th:text="${sp.getTen()}"></th>
+                <th class="so_luong">1</th>
+                <th class="tong_tien_sp"></th>
+            </tr>
+            <tr>
+                <th><hr style="color: white; height: 10px;"></th>
+                <th><hr style="color: white; height: 10px;"></th>
+                <th><hr style="color: white; height: 10px;"></th>
+            </tr>
+            <tr>
+                <th>Tổng</th>
+                <th></th>
+                <th id="tong_tien"></th>
+            </tr>
+        </table>
+        <button class="btn_confirm">Xác nhận</button>
+    </div>
+</div>
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/cartProduct.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant's Huy</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <script th:src="@{https://kit.fontawesome.com/843b0b6aa6.js}" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+    <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+    <div class="sub_nav">
+        <ul>
+            <li><a th:href="@{/home}">Trang chủ</a></li>
+            <li><a th:href="@{/product}">Sản Phẩm</a></li>
+            <li><a href="/comment">Bình luận</a></li>
+            <li><a href="#contact">Liên hệ với tôi</a></li>
+        </ul>
+        <div class="cart">
+            <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+            <div class="quantity" th:text="${soLuong}"></div>
+        </div>
+        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+    </div>
+</div>
+<section id="home">
+    <div class="content">
+        <h1>Chào bạn đến với <i>Restaurant's Huy</i></h1>
+        <h2>Rất vui khi được phục vụ bạn</h2>
+            <div class="path">
+                <h4>Món ngon ngay ở dưới</h4>
+                <i style="font-size: 30px; color: rgb(248, 119, 6);" class="fa-solid fa-arrow-down"></i><br>
+                <button class="click_product"><a style="text-decoration: none;
+                        color: white;" href="/Restaurant/sanpham">Nào zô</a></button>
+            </div>
+    </div>
+    <div class="container_img">
+        <img class="image_extra" th:src="@{/photos/mam-com-gia-dinh-3.jpg}" alt="">
+        <img class="image_extra" th:src="@{/photos/nhung-mam-com-4-nguoi-du-mon-khien-chi-em-tuong-me-dam-ha-noi-chi-o-nha-nau-an-66366447_2860621750621347_5231410079382634496_n-1563160410-495-width660height660.jpg}" alt="">
+        <img class="image_main" th:src="@{/photos/noi-that.jpg}" alt="">
+    </div>
+</section>
+<section id="comment">
+    <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="container">
+        <div th:each="sp : ${danhGias}" class="comment_1">
+            <img th:src="@{${'/photos/memory-home/'+sp.getKhachHang().getMonAn().getTen()+'.jpg'}}" alt="">
+            <h5><i>Tên </i>: <span th:text="${sp.getKhachHang().getTen()}"></span> </h5>
+            <h5><i>SDT </i>: <span th:text="${sp.getKhachHang().getSdt()}"></span></h5>
+            <h6 th:text="${sp.getBinhLuan()}"></h6>
+            <div class="rate_outer">
+                <div class="rate_inner" th:style="@{${'width: '+sp.getSoSao()+'%'}}"></div>
+            </div>
+            <h2 th:text="${sp.getKhachHang().getMonAn().getTen()}"></h2>
+        </div>
+    </div>
+    <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>
+</section>
+
+<section id="contact">
+    <h3>Khiếu nại liên hệ với tôi</h3>
+    <h5>SDT : 0329194466 or</h5>
+    <div class="container_contact">
+        <img th:src="@{/photos/Facebook_f_logo_(2019).svg.png}" alt="">
+        <img th:src="@{/photos/Instagram_logo_2016.svg.png}" alt="">
+        <img th:src="@{/photos/Twitter-logo.svg.png}" alt="">
+    </div>
+    <h4>@Copyright/2022</h4>
+</section>
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/home.js}"></script>
+<script th:src="@{/js/header.js}"></script>
+</body>
+</html>

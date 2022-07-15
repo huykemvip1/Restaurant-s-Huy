@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(to right,rgb(71, 192, 222),rgb(19, 7, 241));
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+.progress{
+    display: flex;
+    position: relative;
+    background-color: rgb(219, 210, 210);
+    height: 50px;
+    width: 900px;
+    margin: 50px auto;
+    justify-content: center;
+    gap: 300px;
+    border-radius:50px;
+}
+.progress .step{
+    position: relative;
+    border: black 10px solid;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    color: black;
+    text-align: center;
+    background-color: rgb(219, 210, 210);
+    overflow: hidden;
+    bottom: 25px;
+}
+
+.progress .step h1{
+    font-size: 55px;
+}
+
+
+
+.dashboard_customer{
+    position:relative;
+    display: flex;
+    margin: 0 auto;
+    color: white;
+    gap: 100px;
+    background-color: rgb(28, 79, 160);
+    padding: 15px 15px;
+    border-radius: 30px;
+    width: 1000px;
+}
+.dashboard_customer .products_information table{
+    border: 5px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.dashboard_customer .products_information th{
+    text-align: left;
+    padding: 10px 20px;
+}
+.dashboard_customer .products_information h2{
+    margin: auto 0;
+    background-color: rgb(142, 198, 38);
+}
+.dashboard_customer .products_information .btn_confirm{
+    color: white;
+    background-color: green;
+    width: 130px;
+    height: 39px;
+    border-radius: 10px;
+    transition: 0.5s all ease;
+    margin-top: 10px ;
+    margin-left: 180px;
+    cursor: pointer;
+}
+.dashboard_customer .products_information  .btn_confirm:hover{
+    transform: scale(1.2);
+}
+.dashboard_customer .products_customer a{
+   position:relative;
+   text-decoration:none;
+   font-size:20px;
+   color:red;
+   left:100px;
+   top:16px;
+}
+.dashboard_customer .products_customer a i:hover{
+     transform:scale(1.3)
+}
+
+
+.dashboard_customer .require_product{
+   text-align:center;
+}
+.dashboard_customer .require_product a{
+   margin-top:100px;
+}
+.dashboard_customer .require_product button{
+      color:white;
+      border-radius:20px;
+      width: 190px;
+      height:30px;
+      background:green;
+}
+
+
+
+
+
+.dashboard_customer .products_customer{
+    width: 300px;
+    text-align: center;
+    border: 5px solid black;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+.dashboard_customer .products_customer .btn_quantity{
+    margin-left: 100px;
+}
+.dashboard_customer .products_customer .btn_quantity button:first-child{
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(1.0);
+}
+.dashboard_customer .products_customer .btn_quantity button:last-child{
+    color: white;
+    background-color: green;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(1.0);
+}
+.dashboard_customer .products_customer .btn_quantity button:first-child:hover,
+.dashboard_customer .products_customer .btn_quantity button:last-child:hover{
+    transform: scale(1.2);
+}
+.dashboard_customer .products_customer h4{
+    margin: 0 auto;
+    width: 250px;
+    height: 50px;
+}
+.dashboard_customer .products_customer img{
+    width: 200px;
+    height: 120px;
+    border-radius: 50%;
+
+}
+.dashboard_customer .products_customer .btn_quantity{
+    display: flex;
+    gap: 10px;
+}
+
+.to_selects{
+    position: fixed;
+    right: 30px;
+    font-size: 50px;
+    bottom: 10px;
+    cursor: pointer;
+}
+.to_green{
+    background-color: green;
+}
+.hide{
+    display: none;
+}
+.show{
+    display:block;
+}

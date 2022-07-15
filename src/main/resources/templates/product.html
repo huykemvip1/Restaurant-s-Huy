@@ -1,0 +1,102 @@
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant's Huy</title>
+    <link rel="stylesheet" th:href="@{/css/product.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <script src="https://kit.fontawesome.com/843b0b6aa6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+    <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+    <div class="sub_nav">
+        <ul>
+            <li><a th:href="@{/home}">Trang chủ</a></li>
+            <li><a th:href="@{/product}">Sản Phẩm</a></li>
+            <li><a href="#comment">Bình luận</a></li>
+            <li><a href="#contact">Liên hệ với tôi</a></li>
+        </ul>
+        <div class="cart">
+            <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+            <div class="quantity" th:text="${soLuong}"></div>
+        </div>
+        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+    </div>
+</div>
+<div class="selects" id="selects">
+    <a href="#drinks_product"><button>Đồ uống</button></a>
+    <a href="#food_1_product"><button>Đồ ăn nhẹ</button></a>
+    <a href="#food_2_product"><button>Đồ ăn mặn</button></a>
+</div>
+<section id="new_product">
+    <h1>Sản phẩm mới <img th:src="@{/photos/NEW.jpg}" alt=""></h1>
+    <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="grid_container">
+        <div class="container" th:each="sp : ${spMoi}">
+            <h4 th:text="${sp.getTen()}"></h4>
+            <img th:src="@{${'/photos/memory-product/'+sp.getTen()+'.jpg'}}" alt="">
+            <h6>Nguyên liệu: <span th:text="${sp.getNguyenLieu()}"></span></h6>
+            <h5>Giá : <span th:text="${sp.getGiaTien()}"></span></h5>
+            <input type="hidden" th:value="${sp.getMaMonAn()}">
+            <button th:class="${#lists.contains(list,sp.getMaMonAn()) == true } ? hide: btn_new">Thêm vào</button>
+            <div th:class="${#lists.contains(list,sp.getMaMonAn()) == false }? hide: avaliable">Đã được thêm</div>
+        </div>
+    </div>
+    <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>
+</section>
+<section id="drinks_product">
+    <h1>Đồ uống <img th:src="@{/photos/drink.jpg}" alt=""></h1>
+    <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="grid_container">
+        <div class="container" th:each="sp : ${spDoUong}">
+            <h4 th:text="${sp.getTen()}"></h4>
+            <img th:src="@{${'/photos/memory-product/'+sp.getTen()+'.jpg'}}" alt="">
+            <h6>Nguyên liệu: <span th:text="${sp.getNguyenLieu()}"></span></h6>
+            <h5>Giá : <span th:text="${sp.getGiaTien()}"></span></h5>
+            <input type="hidden" th:value="${sp.getMaMonAn()}">
+            <button th:class="${#lists.contains(list,sp.getMaMonAn()) == true }? hide: btn_drink">Thêm vào</button>
+            <div th:class="${#lists.contains(list,sp.getMaMonAn()) == false }? hide: avaliable">Đã được thêm</div>
+        </div>
+    </div>
+    <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>
+</section>
+<section id="food_1_product">
+    <h1>Đồ ăn nhẹ <img th:src="@{/photos/food_1.jpg}" alt=""></h1>
+    <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="grid_container">
+        <div class="container" th:each="sp : ${spDoAnN}">
+            <h4 th:text="${sp.getTen()}"></h4>
+            <img th:src="@{${'/photos/memory-product/'+sp.getTen()+'.jpg'}}" alt="">
+            <h6>Nguyên liệu: <span th:text="${sp.getNguyenLieu()}"></span></h6>
+            <h5>Giá : <span th:text="${sp.getGiaTien()}"></span></h5>
+            <input type="hidden" th:value="${sp.getMaMonAn()}">
+            <button th:class="${#lists.contains(list,sp.getMaMonAn()) == true }? hide: btn_food_1">Thêm vào</button>
+            <div th:class="${#lists.contains(list,sp.getMaMonAn()) == false }? hide: avaliable">Đã được thêm</div>
+        </div>
+    </div>
+    <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>
+</section>
+<section id="food_2_product">
+    <h1>Đồ ăn mặn <img th:src="@{/photos/food_2.jpg}" alt=""></h1>
+    <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="grid_container">
+        <div class="container" th:each="sp : ${spDoAnM}">
+            <h4 th:text="${sp.getTen()}"></h4>
+            <img th:src="@{${'/photos/memory-product/'+sp.getTen()+'.jpg'}}" alt="">
+            <h6>Nguyên liệu: <span th:text="${sp.getNguyenLieu()}"></span></h6>
+            <h5>Giá : <span th:text="${sp.getGiaTien()}"></span></h5>
+            <input type="hidden" th:value="${sp.getMaMonAn()}">
+            <button th:class="${#lists.contains(list,sp.getMaMonAn()) == true }? hide: btn_food_2">Thêm vào</button>
+            <div th:class="${#lists.contains(list,sp.getMaMonAn()) == false }? hide: avaliable">Đã được thêm</div>
+        </div>
+    </div>
+    <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>
+</section>
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/product.js}"></script>
+</body>
+</html>
