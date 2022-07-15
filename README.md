@@ -3,4 +3,4 @@ Bán hàng đồ ăn uống theo 2 cách đặt bàn ăn tại cửa hàng or c�
 Mô hình relation database 
 
 
-![Restaurant drawio](https://user-images.githubusercontent.com/86525883/179220215-f08e0a7b-51e3-401a-b7b4-b51f6959b220.png)
+![Restaurant drawio](https://user-images.githubusercontent.com/86525883/179233742-b8ef598f-b674-45c5-9f9c-4cf12ef78d66.png)
