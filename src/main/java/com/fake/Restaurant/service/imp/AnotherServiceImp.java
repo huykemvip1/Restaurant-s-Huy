@@ -59,7 +59,7 @@ public class AnotherServiceImp implements AnotherService {
 
     @Override
     public void sendMessageWithAttachment(KhachHang khachHang, DatBan datBan) {
-
+        log.info("{}",datBan);
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
 
         List<KhachHang> khachHangs=khachHangService.tim_khach_hang_ma(khachHang.getMaKhachHang());

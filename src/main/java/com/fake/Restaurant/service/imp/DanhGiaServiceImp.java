@@ -28,6 +28,7 @@ public class DanhGiaServiceImp implements DanhGiaService {
     private AnotherService anotherService;
     @Autowired
     private KhachHangService khachHangService;
+
     @Override
     public List<DanhGia> ds_danh_gia_sp() throws IOException {
 
@@ -51,6 +52,24 @@ public class DanhGiaServiceImp implements DanhGiaService {
     @Override
     public double kich_thuoc_sao(double sao) {
         return (sao/TONG_SAO)*100.0;
+    }
+
+    @Override
+    public KhachHang luu_danh_gia(KhachHang khachHang) {
+        KhachHang kh=khachHangService.tim_khach_hang_ten_sdt_ma(khachHang.getTen()
+                ,khachHang.getSdt(),khachHang.getMaDoAn());
+        log.info("{}",kh);
+        if (khachHang == null){
+            return null;
+        }else{
+            DanhGia danhGia=DanhGia.builder()
+                    .binhLuan(khachHang.getDanhGia().getBinhLuan())
+                    .soSao(khachHang.getDanhGia().getSoSao())
+                    .khachHang(kh)
+                    .build();
+            repoDanhGia.save(danhGia);
+            return kh;
+        }
     }
 
     @Override

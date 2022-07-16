@@ -58,7 +58,7 @@ public class KhachHang {
     @JoinColumn(name = "ma_do_an",insertable = false,updatable = false)
     private MonAn monAn;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "khachHang")
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "khachHang")
     private DanhGia danhGia;
     /*
     // Nguoi xac nhan thanh toan

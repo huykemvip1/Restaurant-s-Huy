@@ -2,8 +2,6 @@ package com.fake.Restaurant.service.imp;
 
 import com.fake.Restaurant.domain.DataCart;
 import com.fake.Restaurant.domain.KhachHang;
-import com.fake.Restaurant.domain.MonAn;
-import com.fake.Restaurant.exception.ValueDoesNotExist;
 import com.fake.Restaurant.repository.RepoKhachHang;
 import com.fake.Restaurant.repository.RepoMonAn;
 import com.fake.Restaurant.service.KhachHangService;
@@ -11,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -93,6 +90,22 @@ public class KhachHangServiceImp implements KhachHangService {
         }else{
             return khachHang;
         }
+    }
+
+    @Override
+    public KhachHang tim_khach_hang_ten_sdt_ma(String ten, String sdt, String maDoAn) {
+        Optional<KhachHang> khachHang=repoKhachHang.findByTenAndSdtAndMaDoAn(ten,sdt,maDoAn);
+        log.info("{}",khachHang.get());
+        if (khachHang.isEmpty()){
+        return null;
+        }else {
+            return khachHang.get();
+        }
+    }
+
+    @Override
+    public void luu_ttkh(KhachHang kh) {
+        repoKhachHang.save(kh);
     }
 
 

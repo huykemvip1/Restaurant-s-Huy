@@ -62,18 +62,18 @@ public class DatBanServiceImp implements DatBanService {
     }
 
     @Override
-    public boolean luu_dat_ban(DatBan datBan,String maKhachHang) {
+    public DatBan luu_dat_ban(DatBan datBan,String maKhachHang) {
         DatBan db=repoDatBan.findByThoiGianSuDungAndSoLuongNguoi(
                 datBan.getThoiGianSuDung(),
                 datBan.getSoLuongNguoi()
         );
         List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
         if (khachHang == null){
-            return false;
+            return null;
         }else {
                 db.setKhachHang(khachHang);
-                repoDatBan.save(db);
-            return true;
+                DatBan datBan1= repoDatBan.save(db);
+            return datBan1;
         }
     }
 

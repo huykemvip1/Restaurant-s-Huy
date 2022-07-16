@@ -9,5 +9,6 @@ import java.util.List;
 public interface DanhGiaService {
     List<DanhGia> ds_danh_gia_sp() throws IOException;
     double kich_thuoc_sao(double sao);
+    KhachHang luu_danh_gia(KhachHang khachHang);
     void deleteMemoryHome() throws IOException;
 }

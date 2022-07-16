@@ -15,4 +15,6 @@ public interface RepoKhachHang extends JpaRepository<KhachHang, KhachHangID> {
     List<KhachHang> findByMaKhachHang(String maKhachHang);
 
     List<KhachHang> findByTenAndSdtAndDanhGia(String ten, String sdt, DanhGia danhGia);
+
+    Optional<KhachHang> findByTenAndSdtAndMaDoAn(String ten, String sdt, String maDoAn);
 }

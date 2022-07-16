@@ -89,10 +89,10 @@ public class ControllerCart {
     @PostMapping("/book/{maKhachHang}")
     public String addBook(@PathVariable("maKhachHang") String maKhachHang,
                           @ModelAttribute("datBan") DatBan datBan){
-        boolean check= datBanService.luu_dat_ban(datBan,maKhachHang);
-        if(check == true){
+        DatBan datBan1= datBanService.luu_dat_ban(datBan,maKhachHang);
+        if(datBan1 != null){
             List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
-            anotherService.sendMessageWithAttachment(khachHang.get(0),datBan);
+            anotherService.sendMessageWithAttachment(khachHang.get(0),datBan1);
             return "redirect:/cart/success";
         }else {
             return "redirect:/page_error";
