@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -86,10 +87,12 @@ public class DataCartServiceImp implements DataCartService {
 
     @Override
     public boolean xoa_sessionId(String sessionId) {
-        DataCart dataCart=repoDataCart.deleteBySessionId(sessionId);
-        if (dataCart == null){
+        List<DataCart> dataCarts=repoDataCart.find_all_dataCart(sessionId);
+
+        if (dataCarts.size() < 1){
             return false;
         }else {
+            repoDataCart.deleteAll(dataCarts);
             return true;
         }
     }

@@ -11,4 +11,6 @@ public interface KhachHangService {
     KhachHang an_sdt(KhachHang khachHang);
     KhachHang luu_ttkh_tu_DataCart(List<DataCart> dataCarts,KhachHang khachHang);
     List<KhachHang> tim_khach_hang_ma(String maKhachHang);
+
+    List<KhachHang> tim_khach_hang_ten_sdt(String ten, String sdt);
 }

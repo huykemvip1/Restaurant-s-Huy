@@ -7,9 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Transactional
 public interface RepoDatBan extends JpaRepository<DatBan, DatBanID> {
     @Query(value = "select d from DatBan d where " +
             "d.thoiGianSuDung = :time")

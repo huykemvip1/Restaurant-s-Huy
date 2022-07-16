@@ -26,9 +26,15 @@ public class DanhGia {
     private double soSao;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumns({
-            @JoinColumn(name = "ma_khach_hang",referencedColumnName = "ma_khach_hang"),
-            @JoinColumn(name = "ma_do_an",referencedColumnName = "ma_do_an")
-    })
+    @JoinTable(name = "khach_hang_danh_gia",
+            joinColumns = {
+                @JoinColumn(name = "ma_danh_gia")
+            },
+            inverseJoinColumns ={
+                    @JoinColumn(name = "ma_do_an"),
+                @JoinColumn(name = "ma_khach_hang")
+
+            }
+    )
     private KhachHang khachHang;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant's Huy</title>
+  <link rel="stylesheet" th:href="@{/css/header.css}">
+  <link rel="stylesheet" th:href="@{/css/success.css}">
+  <script th:src="@{https://kit.fontawesome.com/843b0b6aa6.js}" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+  <img th:src="@{/photos/anh-dai-dien.png}" alt="">
+  <div class="sub_nav">
+    <ul>
+      <li><a th:href="@{/home}">Trang chủ</a></li>
+      <li><a th:href="@{/product}">Sản Phẩm</a></li>
+      <li><a th:href="@{/comment}">Bình luận</a></li>
+      <li><a th:href="@{/home#contact}">Liên hệ với tôi</a></li>
+    </ul>
+    <div class="cart">
+      <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
+      <div class="quantity"></div>
+    </div>
+    <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+  </div>
+</div>
+<div class="container_success">
+  <h1>Sản phẩm đã được đăng ký thành công </h1>
+  <h4>Mọi chi tiết đã được gửi qua gmail</h4>
+  <img th:src="@{/photos/see-you-again.jpg}" alt="">
+  <h4>Mọi thắc mắc liên hệ dưới đây</h4>
+  <a th:href="@{/home#contact}"><button>Go go</button></a>
+</div>
+<div class="to_selects"><i class="fa-solid fa-arrow-up"></i></div>
+<script th:src="@{/js/header.js}"></script>
+</body>
+</html>

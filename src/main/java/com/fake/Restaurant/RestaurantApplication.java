@@ -29,9 +29,7 @@ public class RestaurantApplication implements CommandLineRunner {
 
 		SpringApplication.run(RestaurantApplication.class, args);
 	}
-	private RepoLoaiMonAn repoLoaiMonAn;
-	private RepoMonAn repoMonAn;
-	private RepoDatBan repoDatBan;
+
 	@Override
 	public void run(String... args) throws Exception {
 		/*

@@ -69,7 +69,7 @@ h1{
     text-align: center;
 }
 .container_mode{
-    background-color: red;
+    background-color: rgb(28, 79, 160);
     border-radius: 20px;
     width: 500px;
     height: 150px;
@@ -108,7 +108,7 @@ h1{
 #select_order{
     display: none;
     position: relative;
-    background-color: red;
+    background-color: rgb(28, 79, 160);
     width: 500px;
     height: 450px;
     margin: 10px auto;
@@ -151,7 +151,7 @@ h1{
 #select_book{
     display: none;
     position: relative;
-    background-color: red;
+    background-color: rgb(28, 79, 160);
     width: 500px;
     height: 350px;
     margin: 10px auto;

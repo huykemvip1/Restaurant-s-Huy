@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -74,13 +75,24 @@ public class KhachHangServiceImp implements KhachHangService {
 
     @Override
     public List<KhachHang> tim_khach_hang_ma(String maKhachHang) {
-        log.info("sai");
+
         List<KhachHang> khachHang=repoKhachHang.findByMaKhachHang(maKhachHang);
        if (khachHang == null){
            return null;
        }else{
            return khachHang;
        }
+    }
+
+    @Override
+    public List<KhachHang> tim_khach_hang_ten_sdt(String ten, String sdt) {
+        List<KhachHang> khachHang=repoKhachHang.findByTenAndSdtAndDanhGia(ten,sdt,null);
+
+        if (khachHang.size() < 1){
+            return null;
+        }else{
+            return khachHang;
+        }
     }
 
 

@@ -14,9 +14,9 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Transactional
 @Service
 @Slf4j
 public class DatBanServiceImp implements DatBanService {
@@ -74,6 +74,16 @@ public class DatBanServiceImp implements DatBanService {
                 db.setKhachHang(khachHang);
                 repoDatBan.save(db);
             return true;
+        }
+    }
+
+    @Override
+    public DatBan tim_tt_ban(List<KhachHang> khachHangs) {
+        if (khachHangs.size() > 0){
+            List<DatBan> datBan=repoDatBan.findByKhachHang(khachHangs.get(0));
+            return datBan.get(0);
+        }else{
+            return null;
         }
     }
 }

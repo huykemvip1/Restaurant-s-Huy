@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class ControllerCart {
     private DatBanService datBanService;
     @Autowired
     private DatMangVeService datMangVeService;
+    @Autowired
+    private AnotherService anotherService;
 
     @GetMapping("/sp")
     public String cartSanPham(Model model, HttpServletRequest request) throws ValueDoesNotExist {
@@ -88,7 +91,9 @@ public class ControllerCart {
                           @ModelAttribute("datBan") DatBan datBan){
         boolean check= datBanService.luu_dat_ban(datBan,maKhachHang);
         if(check == true){
-            return "redirect:/cart/wait"+maKhachHang;
+            List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
+            anotherService.sendMessageWithAttachment(khachHang.get(0),datBan);
+            return "redirect:/cart/success";
         }else {
             return "redirect:/page_error";
         }
@@ -99,25 +104,17 @@ public class ControllerCart {
 
         boolean check= datMangVeService.luu_thong_tin_dat_ve(datMangVe,maKhachHang);
         if(check == true){
-            return "redirect:/cart/wait"+maKhachHang;
+            List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
+            anotherService.sendMessageWithAttachment(khachHang.get(0),null);
+            return "redirect:/cart/success";
         }else {
             return "redirect:/page_error";
         }
     }
 
-    @GetMapping("/wait/{maKhachHang}")
-    public String waitConfirm(@PathVariable("maKhachHang") String maKhachHang
-            ,HttpServletRequest request){
-        List<KhachHang> khachHang=khachHangService.tim_khach_hang_ma(maKhachHang);
-
+    @GetMapping("/success")
+    public String waitConfirm(HttpServletRequest request){
         dataCartService.xoa_sessionId(request.getRemoteAddr());
-
-        if (khachHang == null){
-            return "redirect:/page_error";
-        }else{
-
-            return "waitCard";
-        }
-
+       return "success";
     }
 }
