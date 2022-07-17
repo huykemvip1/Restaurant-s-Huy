@@ -23,7 +23,7 @@
             <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
             <div class="quantity" th:text="${soLuong}"></div>
         </div>
-        <div class="login"><i style="font-size: 30px;" class="fa-solid fa-user"></i></div>
+        <div class="login"><a th:href="@{/login}"><i style="font-size: 30px;" class="fa-solid fa-user"></i></a></div>
     </div>
 </div>
 <section id="home">
@@ -34,7 +34,7 @@
                 <h4>Món ngon ngay ở dưới</h4>
                 <i style="font-size: 30px; color: rgb(248, 119, 6);" class="fa-solid fa-arrow-down"></i><br>
                 <button class="click_product"><a style="text-decoration: none;
-                        color: white;" href="/Restaurant/sanpham">Nào zô</a></button>
+                        color: white;" th:href="@{/product}">Nào zô</a></button>
             </div>
     </div>
     <div class="container_img">

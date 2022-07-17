@@ -35,7 +35,7 @@ function showOrHideProduct(){
 // Xu ly su ton tai cua button
 
 function checkValue(node){
-         const value=  node.querySelectorAll('input')[1]
+         const val=  node.querySelectorAll('input')[1]
          const ten_sp_ct= node.querySelector('h4')
          const btn_quantity=node.querySelector('.btn_quantity')
 
@@ -51,7 +51,7 @@ function checkValue(node){
          if (so_luong_chon === 1 ){
                      btn_left_1.style.display = 'none'
          }else{
-            if(parseInt(value.textContent) === so_luong_chon){
+            if(parseInt(val.value) === so_luong_chon){
                btn_right_1.style.display='none'
             }else{
                btn_right_1.style.display='block'

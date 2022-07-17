@@ -41,6 +41,8 @@ public class MonAnServiceImp implements MonAnService {
         List<MonAn> list=repoMonAn.findAll().stream()
                 .filter(e -> e.getSpMoi() == true)
                 .collect(Collectors.toList());
+        list.stream().filter(e -> e.getTongSoLuong()-e.getSoLuongSd() > 0)
+                        .collect(Collectors.toList());
         saveImageForProduct(list);
         return list;
     }
@@ -55,6 +57,8 @@ public class MonAnServiceImp implements MonAnService {
                 repoLoaiMonAn.findById(DO_UONG_PHA_CHE)
                         .orElseThrow(() -> new ValueDoesNotExist("Loai SP Khong Ton Tai"))
         ));
+        ds_do_uong.stream().filter(e -> e.getTongSoLuong()-e.getSoLuongSd() > 0)
+                .collect(Collectors.toList());
         saveImageForProduct(ds_do_uong);
         return ds_do_uong;
     }
@@ -66,6 +70,8 @@ public class MonAnServiceImp implements MonAnService {
                 repoLoaiMonAn.findById(DO_AN_NHE)
                         .orElseThrow(() -> new ValueDoesNotExist("Loai SP Khong Ton Tai"))
         );
+        list.stream().filter(e -> e.getTongSoLuong()-e.getSoLuongSd() > 0)
+                .collect(Collectors.toList());
         saveImageForProduct(list);
         return list;
     }
@@ -76,6 +82,8 @@ public class MonAnServiceImp implements MonAnService {
                 repoLoaiMonAn.findById(DO_AN_MAN)
                         .orElseThrow(() -> new ValueDoesNotExist("Loai SP Khong Ton Tai"))
         );
+        list.stream().filter(e -> e.getTongSoLuong()-e.getSoLuongSd() > 0)
+                .collect(Collectors.toList());
         saveImageForProduct(list);
         return list;
     }

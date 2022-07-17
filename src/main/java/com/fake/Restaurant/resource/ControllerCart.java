@@ -71,7 +71,7 @@ public class ControllerCart {
                                    HttpServletRequest request) {
 
         List<DataCart> dataCarts=dataCartService.findBySessionId(request.getRemoteAddr());
-        log.info("{}",dataCarts);
+     
 
         KhachHang khachHang1= khachHangService.luu_ttkh_tu_DataCart(dataCarts,khachHang);
 

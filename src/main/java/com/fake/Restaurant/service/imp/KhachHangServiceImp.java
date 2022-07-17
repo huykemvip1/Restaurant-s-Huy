@@ -2,6 +2,7 @@ package com.fake.Restaurant.service.imp;
 
 import com.fake.Restaurant.domain.DataCart;
 import com.fake.Restaurant.domain.KhachHang;
+import com.fake.Restaurant.domain.MonAn;
 import com.fake.Restaurant.repository.RepoKhachHang;
 import com.fake.Restaurant.repository.RepoMonAn;
 import com.fake.Restaurant.service.AnotherService;
@@ -48,7 +49,10 @@ public class KhachHangServiceImp implements KhachHangService {
                     .xacNhan(false)
                     .maDoAn(dataCarts.get(0).getMaMonAn())
                     .build();
+            Optional<MonAn> monAn= repoMonAn.findById(dataCarts.get(0).getMaMonAn());
+            monAn.get().setSoLuongSd(monAn.get().getSoLuongSd()+dataCarts.get(0).getSoLuong());
             KhachHang khachHang1=repoKhachHang.save(kh);
+            repoMonAn.save(monAn.get());
             log.info("{}",khachHang1);
             if (dataCarts.size() > 1){
                 for(DataCart dataCart: dataCarts.subList(1,dataCarts.size())){
@@ -64,7 +68,9 @@ public class KhachHangServiceImp implements KhachHangService {
                             .ten(khachHang1.getTen())
                             .build();
                     KhachHang hh= repoKhachHang.save(newKH);
-                    log.info("{}",hh);
+                    Optional<MonAn> mA= repoMonAn.findById(dataCart.getMaMonAn());
+                    mA.get().setSoLuongSd(mA.get().getSoLuongSd()+dataCart.getSoLuong());
+                    repoMonAn.save(mA.get());
                 }
             }
             return khachHang1;
