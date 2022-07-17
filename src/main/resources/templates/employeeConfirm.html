@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant's Huy</title>
+  <link rel="stylesheet" th:href="@{/css/headerEmployee.css}">
+  <link rel="stylesheet" th:href="@{/css/employeeConfirm.css}">
+  <script src="https://kit.fontawesome.com/843b0b6aa6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="nav">
+  <div class="information">
+    <img src="/image/chestnut-restaurant.jpg" alt="">
+    <div class="container_account">
+      <div class="account" style="display: none;">huykemvip1</div>
+      <div class="account_name">
+        <div>Họ và tên</div>
+        <div>Nguyễn Đình Huy</div>
+      </div>
+      <div class="account_role">
+        <div>Vai trò</div>
+        <div>Nhân viên</div>
+      </div>
+      <a href=""><button>Chỉnh sửa cá nhân</button></a>
+    </div>
+  </div>
+
+  <div class="confirm_product">
+    <i class="fa-solid fa-check"></i>
+    <a href=""><button>Xác nhận đơn hàng</button></a>
+  </div>
+  <div class="add_product">
+    <i class="fa-solid fa-file-circle-plus"></i>
+    <a href=""><button>Thêm sản phẩm</button></a>
+  </div>
+  <div class="manager_customer">
+    <i class="fa-solid fa-pen-to-square"></i>
+    <a href=""><button>Chỉnh sửa sản phẩm</button></a>
+  </div>
+  <div class="manager_customer">
+    <i class="fa-solid fa-users"></i>
+    <a href=""><button>Quản lý khách hàng</button></a>
+  </div>
+</div>
+<div class="content">
+  <h1>Các đơn hàng cần xác nhận</h1>
+  <table>
+    <tr>
+      <th>Tên khách hàng</th>
+      <th>Số điện thoại</th>
+      <th>Ngày mua/ngày đặt hàng</th>
+      <th>Sản phẩm</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr th:each="ds : ${map}">
+      <th class="name_customer" th:text="${ds.key.ten}"></th>
+      <th class="phone_customer" th:text="${ds.key.sdt}"></th>
+      <th class="date_customer" th:text="${ds.key.thoiGianDat}"></th>
+      <th>
+        <button class="check">Xem</button>
+        <div class="mon_an" th:each="vl : ${ds.value}">
+          <img th:src="@{'/photos/memory-product/'+${vl.getMonAn().getTen()}+'.jpg'}" alt="">
+          <h6>Tên : <span th:text="${vl.getMonAn().getTen()}"></span></h6>
+          <h6>Số lượng : <span th:text="${vl.getSoLuong()}"></span></h6>
+        </div>
+      </th>
+      <th><button class="accept">Chấp nhận</button></th>
+      <th><button class="cancel">Hủy bỏ</button></th>
+    </tr>
+
+  </table>
+</div>
+<div class="in_order">
+  <h3>Lựa chọn sắp xếp</h3>
+  <a href=""><button class="new">Thời gian mới</button></a><br>
+  <a href=""><button class="older">Thời gian cũ</button></a>
+</div>
+<script th:src="@{/js/employeeConfirm.js}"></script>
+</body>
+</html>

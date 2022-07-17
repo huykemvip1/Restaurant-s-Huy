@@ -46,15 +46,15 @@
 <section id="comment">
     <div class="btn_left"><i class="fa-solid fa-chevron-left"></i></div>
     <div class="container">
-        <div th:each="sp : ${danhGias}" class="comment_1">
-            <img th:src="@{${'/photos/memory-home/'+sp.getKhachHang().getMonAn().getTen()+'.jpg'}}" alt="">
-            <h5><i>Tên </i>: <span th:text="${sp.getKhachHang().getTen()}"></span> </h5>
-            <h5><i>SDT </i>: <span th:text="${sp.getKhachHang().getSdt()}"></span></h5>
-            <h6 th:text="${sp.getBinhLuan()}"></h6>
+        <div th:each="sp : ${khachHangs}" class="comment_1">
+            <img th:src="@{${'/photos/memory-home/'+sp.getTen()+'.jpg'}}" alt="">
+            <h5><i>Tên </i>: <span th:text="${sp.getTen()}"></span> </h5>
+            <h5><i>SDT </i>: <span th:text="${sp.getSdt()}"></span></h5>
+            <h6 th:text="${sp.getDanhGia().getBinhLuan()}"></h6>
             <div class="rate_outer">
-                <div class="rate_inner" th:style="@{${'width: '+sp.getSoSao()+'%'}}"></div>
+                <div class="rate_inner" th:style="@{${'width: '+sp.getDanhGia().getSoSao()+'%'}}"></div>
             </div>
-            <h2 th:text="${sp.getKhachHang().getMonAn().getTen()}"></h2>
+            <h2 th:text="${sp.getMonAn().getTen()}"></h2>
         </div>
     </div>
     <div class="btn_right"><i class="fa-solid fa-chevron-right"></i></div>

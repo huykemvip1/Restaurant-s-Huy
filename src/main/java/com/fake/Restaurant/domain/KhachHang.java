@@ -58,7 +58,17 @@ public class KhachHang {
     @JoinColumn(name = "ma_do_an",insertable = false,updatable = false)
     private MonAn monAn;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "khachHang")
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "khach_hang_danh_gia",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "ma_danh_gia")
+            },
+            joinColumns ={
+                    @JoinColumn(name = "ma_do_an"),
+                    @JoinColumn(name = "ma_khach_hang")
+
+            }
+    )
     private DanhGia danhGia;
     /*
     // Nguoi xac nhan thanh toan

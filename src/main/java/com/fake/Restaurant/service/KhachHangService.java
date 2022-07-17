@@ -4,7 +4,9 @@ import com.fake.Restaurant.domain.DataCart;
 import com.fake.Restaurant.domain.KhachHang;
 import com.fake.Restaurant.exception.ValueDoesNotExist;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface KhachHangService {
@@ -17,4 +19,7 @@ public interface KhachHangService {
     KhachHang tim_khach_hang_ten_sdt_ma(String ten, String sdt, String maDoAn);
 
     void luu_ttkh(KhachHang kh);
+
+    List<KhachHang> cap_nhat_khach_hang_ten_sdt_tg(String ten, String sdt, LocalDateTime thoiGianDat);
+    Map<KhachHang, List<KhachHang>> tim_ds_khach_hang_chua_tt(int trangThai);
 }

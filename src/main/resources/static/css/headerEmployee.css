@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(to right,rgb(71, 192, 222),rgb(19, 7, 241));
+    font-family: 'Readex Pro', sans-serif;
+    color: white;
+    font-size: 15px;
+}
+.nav{
+    display: block;
+    background-color: rgb(4, 32, 123);
+    position: fixed;
+    width: 550px;
+    height: 700px;
+}
+.nav .information{
+    position: relative;
+    border-bottom: solid 10px black;
+    display: flex;
+    width: 550px;
+    height: 250px;
+    gap: 30px;
+    align-items: center;
+
+}
+.nav .information img{
+    width: 230px;
+    height: 230px;
+    object-fit:fill;
+    border-radius: 50%;
+}
+.nav .information .container_account{
+    display: block;
+    border: 1px solid green;
+    height: 230px;
+    width: 300px;
+    text-align: center;
+}
+.nav .information .container_account button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: green;
+    cursor: pointer;
+    color: white;
+    transition: 0.5s all ease;
+}
+.nav .information .container_account button:hover{
+    transform: scale(1.3);
+}
+.account_name,
+.account_role{
+    padding: 10px 10px;
+}
+ .account_name div,
+ .account_role div{
+    margin: 10px 10px;
+ }
+
+
+
+
+ .nav .add_product,
+  .nav .confirm_product,
+  .nav .manager_customer{
+    display: flex;
+    margin-top: 30px;
+    height: 50px;
+    gap: 20px;
+    align-items: center;
+    border-top: solid 2px green;
+    border-bottom: solid 2px green;
+ }
+ .nav .add_product i,
+ .nav .confirm_product i,
+ .nav .manager_customer i{
+   font-size: 35px;
+ }
+ .nav .add_product a button,
+ .nav .confirm_product a button,
+ .nav .manager_customer a button{
+    height: 40px;
+    width: 200px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    background-repeat:no-repeat;
+    background-color: Transparent;
+    border: none;
+ }
+ .nav .add_product a button:hover,
+ .nav .confirm_product a button:hover,
+ .nav .manager_customer a button:hover{
+    color: green;
+ }

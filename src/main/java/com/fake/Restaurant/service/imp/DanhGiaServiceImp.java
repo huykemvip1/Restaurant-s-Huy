@@ -28,26 +28,28 @@ public class DanhGiaServiceImp implements DanhGiaService {
     private AnotherService anotherService;
     @Autowired
     private KhachHangService khachHangService;
+    @Autowired
+    private RepoKhachHang repoKhachHang;
 
     @Override
-    public List<DanhGia> ds_danh_gia_sp() throws IOException {
+    public List<KhachHang> ds_danh_gia_sp() throws IOException {
 
-        List<DanhGia> danhGias=repoDanhGia.findAll();
+        List<KhachHang> khachHangs=repoKhachHang.findByDanhGiaIsNotNull();
         int index=0;
-        for (DanhGia danhGia:danhGias){
-            danhGias.get(index).setSoSao(kich_thuoc_sao(
-                    danhGia.getSoSao()
+        for (KhachHang khachHang: khachHangs){
+            khachHangs.get(index).getDanhGia().setSoSao(kich_thuoc_sao(
+                    khachHang.getDanhGia().getSoSao()
             ));
 
-            danhGias.get(index).setKhachHang(
-                    khachHangService.an_sdt(danhGia.getKhachHang())
-            );
+            KhachHang khachHang1=khachHangService.an_sdt(khachHang);
+            khachHangs.set(index,khachHang1);
 
-            anotherService.saveImage(danhGia.getKhachHang().getMonAn().getAnhMonAn(),
-                    danhGia.getKhachHang().getTen(),"home");
+
+            anotherService.saveImage(khachHang.getMonAn().getAnhMonAn(),
+                    khachHang.getTen(),"home");
             index++;
         }
-        return danhGias;
+        return khachHangs;
     }
     @Override
     public double kich_thuoc_sao(double sao) {
@@ -65,9 +67,9 @@ public class DanhGiaServiceImp implements DanhGiaService {
             DanhGia danhGia=DanhGia.builder()
                     .binhLuan(khachHang.getDanhGia().getBinhLuan())
                     .soSao(khachHang.getDanhGia().getSoSao())
-                    .khachHang(kh)
                     .build();
-            repoDanhGia.save(danhGia);
+            kh.setDanhGia(danhGia);
+            repoKhachHang.save(kh);
             return kh;
         }
     }
@@ -76,7 +78,7 @@ public class DanhGiaServiceImp implements DanhGiaService {
     public void deleteMemoryHome() throws IOException {
         ds_danh_gia_sp().forEach(danhGia ->{
             try {
-                anotherService.deleteImage(danhGia.getKhachHang().getMonAn().getTen(),"home");
+                anotherService.deleteImage(danhGia.getMonAn().getTen(),"home");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/843b0b6aa6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+
+<form th:action="@{/login}" method="POST">
+    <h1>Đăng Nhập</h1>
+    <p th:class="${message} != 1 ? 'hide':'show'">Tài khoản đăng nhập đã sai</p>
+    <div id="username">
+        <label>Tên tài khoản</label><br>
+        <input type="text" name="username">
+    </div>
+    <div id="password">
+        <label>Mật Khẩu</label><br>
+        <input type="password" name="password">
+    </div>
+    <button type="submit">Đăng nhập</button>
+    <a th:href="@{/forgot}">Quên mật khẩu</a>
+</form>
+</body>
+</html>

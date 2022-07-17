@@ -4,14 +4,16 @@ import com.fake.Restaurant.domain.DataCart;
 import com.fake.Restaurant.domain.KhachHang;
 import com.fake.Restaurant.repository.RepoKhachHang;
 import com.fake.Restaurant.repository.RepoMonAn;
+import com.fake.Restaurant.service.AnotherService;
 import com.fake.Restaurant.service.KhachHangService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,6 +22,7 @@ public class KhachHangServiceImp implements KhachHangService {
     private RepoMonAn repoMonAn;
     @Autowired
     private RepoKhachHang repoKhachHang;
+
     @Override
     public KhachHang an_sdt(KhachHang khachHang) {
 
@@ -108,6 +111,69 @@ public class KhachHangServiceImp implements KhachHangService {
         repoKhachHang.save(kh);
     }
 
+    @Override
+    public List<KhachHang> cap_nhat_khach_hang_ten_sdt_tg(String ten, String sdt, LocalDateTime thoiGianDat) {
+        List<KhachHang> khachHangs=repoKhachHang.findByTenAndSdtAndThoiGianDat(
+                ten,sdt,thoiGianDat
+        );
+        khachHangs.forEach(kh ->{
+            kh.setXacNhan(true);
+        });
+        repoKhachHang.saveAll(khachHangs);
+        if (khachHangs.size() < 1) {
+            return null;
+        }else {
+            return khachHangs;
+        }
+    }
+
+    @Override
+    public Map<KhachHang, List<KhachHang>> tim_ds_khach_hang_chua_tt(int trangThai) {
+        if (trangThai == 0){
+          List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(false);
+
+          return listToMap(khachHangs);
+        }else if (trangThai == 1){
+            List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(
+                    false, Sort.by(Sort.Order.desc("thoiGianDat"))
+            );
+            return listToMap(khachHangs);
+        }else{
+            List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(
+                    false, Sort.by(Sort.Order.asc("thoiGianDat"))
+            );
+            return listToMap(khachHangs);
+        }
+
+    }
+    private Map<KhachHang,List<KhachHang>> listToMap(List<KhachHang> khachHangs){
+        Map<KhachHang ,List<KhachHang>> map=new HashMap<>();
+        for(KhachHang khachHang: khachHangs){
+            if (map.isEmpty()){
+                List<KhachHang> list=repoKhachHang.findByMaKhachHangAndXacNhan(
+                        khachHang.getMaKhachHang(),
+                        false
+                );
+
+                map.put(khachHang,list);
+            }else{
+                for (Iterator<KhachHang> it = map.keySet().iterator(); it.hasNext(); ) {
+                    KhachHang kh = it.next();
+                    if (kh.getMaKhachHang() != khachHang.getMaKhachHang()){
+                        List<KhachHang> list=repoKhachHang.findByMaKhachHangAndXacNhan(
+                                khachHang.getMaKhachHang(),
+                                false
+                        );
+                        map.put(khachHang,list);
+                        break;
+                    }
+                }
+            };
+        }
+
+
+         return map;
+    }
 
     private LocalDateTime hien_gio(){
         return LocalDateTime.now();

@@ -1,11 +1,13 @@
 package com.fake.Restaurant;
 
+import com.fake.Restaurant.domain.KhachHang;
 import com.fake.Restaurant.domain.LoaiMonAn;
 import com.fake.Restaurant.domain.MonAn;
-import com.fake.Restaurant.repository.RepoDatBan;
-import com.fake.Restaurant.repository.RepoLoaiMonAn;
-import com.fake.Restaurant.repository.RepoMonAn;
+import com.fake.Restaurant.repository.*;
+import com.fake.Restaurant.service.KhachHangService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,20 +20,30 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 
 @SpringBootApplication
 @AllArgsConstructor
+@Slf4j
 public class RestaurantApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(RestaurantApplication.class, args);
 	}
+	private KhachHangService hangService;
+	private RepoNhanVien repoNhanVien;
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		/*
+		Map<KhachHang, List<KhachHang>> khachHangListMap=hangService.tim_ds_khach_hang_chua_tt(0);
+		log.info("{}",khachHangListMap.values());
+**/
 		/*
 		Optional<LoaiMonAn> loaiMonAn=repoLoaiMonAn.findById(3);
 		File file=new File("F:/Anh_Code/Restaurant/so-da-phuc-bon-tu.jpg");

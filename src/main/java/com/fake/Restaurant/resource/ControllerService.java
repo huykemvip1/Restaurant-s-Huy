@@ -2,6 +2,7 @@ package com.fake.Restaurant.resource;
 
 import com.fake.Restaurant.domain.DanhGia;
 
+import com.fake.Restaurant.domain.KhachHang;
 import com.fake.Restaurant.service.DanhGiaService;
 import com.fake.Restaurant.service.DataCartService;
 
@@ -36,8 +37,8 @@ public class ControllerService {
 
 
         //-------------
-        List<DanhGia> danhGias=danhGiaService.ds_danh_gia_sp();
-        model.addAttribute("danhGias",danhGias);
+        List<KhachHang> khachHangs=danhGiaService.ds_danh_gia_sp();
+        model.addAttribute("khachHangs",khachHangs);
         return "home";
     }
     /*

@@ -1,0 +1,78 @@
+.content{
+    margin-left: 560px;
+    text-align: center;
+ }
+ .content table{
+    margin-top: 50px;
+    width: 800px;
+    border-spacing: 5px;
+ }
+ .content table tr{
+    background-color: brown;
+    border-spacing: 10px;
+    height: 40px;
+ }
+ .content table tr button{
+    border-radius: 10px;
+    width: 90px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+ }
+ .content table .check{
+    background-color: aqua;
+    position: relative;
+ }
+
+
+
+ .content table .mon_an {
+    display: none;
+    position: absolute;
+    font-size: 22px;
+    background: rgba(4, 32, 123);
+    width: 800px;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    top: 90px;
+    right: 170px;
+    z-index: 1;
+ }
+ .content table .mon_an img{
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+ }
+
+
+
+ .content table .accept{
+    background-color: green;
+ }
+ .content table .cancel{
+    background-color: red;
+ }
+
+
+ .in_order{
+    right: 10px;
+    display: block;
+    position: absolute;
+    top: 37px;
+ }
+ .in_order button{
+    margin: 10px;
+    width: 130px;
+    height: 50px;
+    color: white;
+    font-size: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+ }
+ .in_order .new{
+    background-color: green;
+ }
+ .in_order .older{
+    background-color: red;
+ }
