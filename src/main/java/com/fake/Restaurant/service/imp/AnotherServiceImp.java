@@ -79,13 +79,17 @@ public class AnotherServiceImp implements AnotherService {
 
             );
         }else{
+            String moAns="";
+            for(KhachHang kh: khachHangs){
+                moAns+="\n"+kh.getMonAn().getTen();
+            }
             simpleMailMessage.setText(
                     "Thông tin khách hàng \n"+
                             "Họ và tên : "+khachHang.getTen()+"\n"+
                             "Số điện thoại: "+khachHang.getSdt()+"\n"+
                             "Ngày đặt: "+khachHang.getThoiGianDat()+"\n"+
                     "-------------------------"+"\n"+
-                            "Món ăn đã đặt : "+khachHangs.toString()
+                            "Món ăn đã đặt : "+moAns
             );
         }
         javaMailSender.send(simpleMailMessage);

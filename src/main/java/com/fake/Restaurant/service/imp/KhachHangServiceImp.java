@@ -36,7 +36,7 @@ public class KhachHangServiceImp implements KhachHangService {
 
     @Override
     public KhachHang luu_ttkh_tu_DataCart(List<DataCart> dataCarts,KhachHang khachHang) {
-
+        List<KhachHang> khachHangList=new ArrayList<>();
         if (dataCarts != null){
 
             KhachHang kh=KhachHang.builder()
@@ -51,29 +51,31 @@ public class KhachHangServiceImp implements KhachHangService {
                     .build();
             Optional<MonAn> monAn= repoMonAn.findById(dataCarts.get(0).getMaMonAn());
             monAn.get().setSoLuongSd(monAn.get().getSoLuongSd()+dataCarts.get(0).getSoLuong());
-            KhachHang khachHang1=repoKhachHang.save(kh);
+            khachHangList.add(kh);
             repoMonAn.save(monAn.get());
-            log.info("{}",khachHang1);
+
             if (dataCarts.size() > 1){
                 for(DataCart dataCart: dataCarts.subList(1,dataCarts.size())){
                     KhachHang newKH=KhachHang.builder()
-                            .maKhachHang(khachHang1.getMaKhachHang())
                             .maDoAn(dataCart.getMaMonAn())
-                            .tenThe(khachHang1.getTenThe())
-                            .email(khachHang1.getTenThe())
+                            .tenThe(khachHang.getTenThe())
+                            .email(khachHang.getEmail())
                             .soLuong(dataCart.getSoLuong())
-                            .sdt(khachHang1.getSdt())
-                            .thoiGianDat(khachHang1.getThoiGianDat())
-                            .xacNhan(khachHang1.getXacNhan())
-                            .ten(khachHang1.getTen())
+                            .sdt(khachHang.getSdt())
+                            .thoiGianDat(hien_gio())
+                            .xacNhan(false)
+                            .ten(khachHang.getTen())
                             .build();
-                    KhachHang hh= repoKhachHang.save(newKH);
+                    khachHangList.add(newKH);
                     Optional<MonAn> mA= repoMonAn.findById(dataCart.getMaMonAn());
                     mA.get().setSoLuongSd(mA.get().getSoLuongSd()+dataCart.getSoLuong());
                     repoMonAn.save(mA.get());
                 }
             }
-            return khachHang1;
+            List<KhachHang> list= repoKhachHang.saveAll(khachHangList);
+
+
+            return list.get(0);
         }else {
             return  null;
         }

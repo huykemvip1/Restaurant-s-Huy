@@ -46,7 +46,7 @@ public class DanhGiaServiceImp implements DanhGiaService {
 
 
             anotherService.saveImage(khachHang.getMonAn().getAnhMonAn(),
-                    khachHang.getTen(),"home");
+                    khachHang.getMonAn().getTen(),"home");
             index++;
         }
         return khachHangs;

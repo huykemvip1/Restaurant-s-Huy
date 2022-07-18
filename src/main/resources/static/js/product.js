@@ -119,7 +119,7 @@ checkExistButton()
 // khai bao xu ly luu vao gio hang
 
  const btn_food_2=document.querySelectorAll('.btn_food_2')
-    const btn_food_1=document.querySelectorAll('.food_1_product')
+    const btn_food_1=document.querySelectorAll('.btn_food_1')
     const btn_drink=document.querySelectorAll('.btn_drink')
     const btn_new=document.querySelectorAll('.btn_new')
 

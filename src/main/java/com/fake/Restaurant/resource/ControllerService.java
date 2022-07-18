@@ -38,6 +38,7 @@ public class ControllerService {
 
         //-------------
         List<KhachHang> khachHangs=danhGiaService.ds_danh_gia_sp();
+
         model.addAttribute("khachHangs",khachHangs);
         return "home";
     }
