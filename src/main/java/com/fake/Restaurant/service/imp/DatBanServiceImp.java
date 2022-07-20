@@ -36,8 +36,9 @@ public class DatBanServiceImp implements DatBanService {
 
     @Override
     public List<DatBan> find_tg_trong() {
+        KhachHang khachHang=new KhachHang();
         List<DatBan> list=new ArrayList<>();
-                for(DatBan datBan: repoDatBan.findByKhachHang(null)){
+                for(DatBan datBan: repoDatBan.findByKhachHang(khachHang)){
                     if (list.size() < 1){
                         list.add(datBan);
 

@@ -29,4 +29,13 @@ public class RestEmployee {
        );
         return ResponseEntity.ok().build();
     }
+    @PostMapping(value = "/huy/{account}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<KhachHang> huy(@RequestBody KhachHang khachHang,
+                                             @PathVariable("account") String account){
+      khachHangService.xoa_don_hang(
+                khachHang.getTen(),khachHang.getSdt(),khachHang.getThoiGianDat()
+        );
+        return ResponseEntity.ok().build();
+    }
 }

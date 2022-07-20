@@ -22,4 +22,6 @@ public interface KhachHangService {
 
     List<KhachHang> cap_nhat_khach_hang_ten_sdt_tg(String ten, String sdt, LocalDateTime thoiGianDat);
     Map<KhachHang, List<KhachHang>> tim_ds_khach_hang_chua_tt(int trangThai);
+
+    void xoa_don_hang(String ten, String sdt, LocalDateTime thoiGianDat);
 }

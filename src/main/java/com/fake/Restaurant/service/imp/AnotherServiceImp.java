@@ -40,6 +40,7 @@ public class AnotherServiceImp implements AnotherService {
     private RepoDataCart repoDataCart;
     @Autowired
     private KhachHangService khachHangService;
+
     @Autowired
     private DatBanService datBanService;
 
@@ -59,7 +60,7 @@ public class AnotherServiceImp implements AnotherService {
 
     @Override
     public void sendMessageWithAttachment(KhachHang khachHang, DatBan datBan) {
-        log.info("{}",datBan);
+
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
 
         List<KhachHang> khachHangs=khachHangService.tim_khach_hang_ma(khachHang.getMaKhachHang());
@@ -75,7 +76,11 @@ public class AnotherServiceImp implements AnotherService {
                     "-------------------------"+"\n"+
                             "Thông tin bàn đã đặt"+"\n"+
                             "Bàn : "+datBan.getTenBan()+" ---- "+
-                            "Thời gian ăn : "+datBan.getThoiGianSuDung()
+                            "Thời gian ăn : "+datBan.getThoiGianSuDung()+"\n \n"+
+                            "Mời bạn thanh toán với tài khoản này"+
+                            "Tên tài khoản : NGUYEN DINH HUY \n"+
+                            "Ngân hàng: BIDV \n"+
+                            "Số TK: 21510002641437"
 
             );
         }else{
@@ -89,7 +94,11 @@ public class AnotherServiceImp implements AnotherService {
                             "Số điện thoại: "+khachHang.getSdt()+"\n"+
                             "Ngày đặt: "+khachHang.getThoiGianDat()+"\n"+
                     "-------------------------"+"\n"+
-                            "Món ăn đã đặt : "+moAns
+                            "Món ăn đã đặt : "+moAns+"\n \n"+
+                            "Mời bạn thanh toán với tài khoản này"+
+                            "Tên tài khoản : NGUYEN DINH HUY \n"+
+                            "Ngân hàng: BIDV \n"+
+                            "Số TK: 21510002641437"
             );
         }
         javaMailSender.send(simpleMailMessage);

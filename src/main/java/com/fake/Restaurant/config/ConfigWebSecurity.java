@@ -52,7 +52,10 @@ public class ConfigWebSecurity extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/employee/confirm")
-                .failureUrl("/login-error");
+                .failureUrl("/login-error")
+                .and()
+                .logout()
+                .logoutUrl("/logout");
     }
 
 }

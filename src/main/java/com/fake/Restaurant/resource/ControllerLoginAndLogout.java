@@ -13,15 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Slf4j
 public class ControllerLoginAndLogout {
+    private int HAVE_ERROR=1;
+    private int HAVE_NOT_ERROR=0;
     @GetMapping("/login")
     public String login(Model model){
-        model.addAttribute("message",0);
+        model.addAttribute("message",HAVE_NOT_ERROR);
         return "login";
     }
     @GetMapping("/login-error")
     public String errorLogin(Model model){
-        model.addAttribute("message",1);
+        model.addAttribute("message",HAVE_ERROR);
         return "login";
     }
-
+    @GetMapping("/logout")
+    public String logout(Model model){
+        model.addAttribute("message",HAVE_NOT_ERROR);
+        return "login";
+    }
 }

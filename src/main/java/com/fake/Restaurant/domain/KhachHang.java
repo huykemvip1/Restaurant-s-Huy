@@ -70,6 +70,7 @@ public class KhachHang {
             }
     )
     private DanhGia danhGia;
+
     /*
     // Nguoi xac nhan thanh toan
     @ManyToOne

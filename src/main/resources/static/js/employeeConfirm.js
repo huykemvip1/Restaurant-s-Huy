@@ -1,27 +1,25 @@
 const check=document.querySelectorAll('.check')
 const mon_an=document.querySelectorAll('.mon_an')
+const mon_an_container=document.querySelectorAll('.mon_an_container')
 
 check.forEach((value,index) => {
      value.addEventListener('click',function(){
              showMonAn(value)
-
      })
 })
 
 document.addEventListener('click',function(event){
     if (event.target === document.querySelector('body') ||
             event.target === document.querySelector('.content')){
-        mon_an.forEach((value) =>{
+        mon_an_container.forEach((value) =>{
            value.style.display='none'
         })
     }
 })
 
 function showMonAn(value){
-    const mon_an =value.parentNode.querySelectorAll('.mon_an')
-    mon_an.forEach((vl) =>{
-        vl.style.display='flex'
-    })
+    const vl =value.parentNode.querySelector('.mon_an_container')
+    vl.style.display='block'
 }
 
 const khachHang={
@@ -42,7 +40,7 @@ const date_customer=content.querySelectorAll('.date_customer')
 
 // buntton xac nhan vs huy don hang cua khach
 
-
+// Xu ly logic xac nhan va huy
 
 const accept=document.querySelectorAll('.accept')
 accept.forEach((value,index) =>{
@@ -79,7 +77,7 @@ function connectServer(method,url){
 }
 
 
-// Xu ly logic xac nhan va huy
+
 
 function xacNhanKH(index){
 
@@ -98,6 +96,7 @@ function huyKH(index){
     http.setRequestHeader("content-type","application/json")
 
     var obj=xuLyObjectToJson(index)
+    console.log(khachHang)
     http.send(obj)
 }
 
