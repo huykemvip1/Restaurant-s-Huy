@@ -22,10 +22,13 @@ public interface RepoKhachHang extends JpaRepository<KhachHang, KhachHangID> {
 
     List<KhachHang> findByTenAndSdtAndThoiGianDat(String ten, String sdt, LocalDateTime thoiGianDat);
 
-    List<KhachHang> findByXacNhan(boolean xacNhan);
     List<KhachHang> findByXacNhan(boolean xacNhan, Sort sort);
 
     List<KhachHang> findByMaKhachHangAndXacNhan(String maKhachHang, boolean xacNhan);
 
     List<KhachHang> findByDanhGiaIsNotNull();
+
+    List<KhachHang> findByXacNhan(boolean xacNhan);
+
+
 }

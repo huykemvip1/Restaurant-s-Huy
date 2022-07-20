@@ -20,10 +20,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -36,10 +33,16 @@ public class RestaurantApplication implements CommandLineRunner {
 	}
 	private KhachHangService hangService;
 	private RepoNhanVien repoNhanVien;
+	private KhachHangService khachHangService;
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		Map<KhachHang,List<KhachHang>> khachHangListMap
+				= khachHangService.tim_ds_khach_hang_chua_tt(0);
+		Iterator<KhachHang> khachHangIterator=khachHangListMap.keySet().iterator();
+		while (khachHangIterator.hasNext()){
+			System.out.println(khachHangIterator.next().getMaKhachHang());
+		}
 		/*
 		Map<KhachHang, List<KhachHang>> khachHangListMap=hangService.tim_ds_khach_hang_chua_tt(0);
 		log.info("{}",khachHangListMap.values());

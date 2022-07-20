@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 @Slf4j
@@ -24,7 +26,6 @@ public class ControllerEmployee {
     @GetMapping("/confirm")
     public String confirm(Model model){
         Map<KhachHang, List<KhachHang>> map= khachHangService.tim_ds_khach_hang_chua_tt(KHONG_SAP_XEP);
-        log.info("{}",map.keySet().size());
 
         model.addAttribute("map",map);
         return "employeeConfirm";

@@ -9,11 +9,16 @@ import com.fake.Restaurant.service.AnotherService;
 import com.fake.Restaurant.service.KhachHangService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -134,13 +139,41 @@ public class KhachHangServiceImp implements KhachHangService {
             return khachHangs;
         }
     }
-
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
+    }
     @Override
     public Map<KhachHang, List<KhachHang>> tim_ds_khach_hang_chua_tt(int trangThai) {
         if (trangThai == 0){
           List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(false);
+          /*
+          List<KhachHang> khachHangSDistinct=new ArrayList<>();
 
-          return listToMap(khachHangs);
+         for (KhachHang khachHang:khachHangs){
+             int dem=0;
+             if (khachHangSDistinct.size() < 1){
+                 khachHangSDistinct.add(khachHang);
+             }else{
+                 for(KhachHang kh: khachHangSDistinct){
+
+                     if (kh.getMaKhachHang().equals(khachHang.getMaKhachHang())){
+                         dem++;
+                     }
+                 }
+                 if(dem < 1){
+                     khachHangSDistinct.add(khachHang);
+                 }
+             }
+         }
+* */
+          return listToMap(
+                  khachHangs.
+                          stream()
+                          .filter(distinctByKey(a ->a.getMaKhachHang()))
+                          .distinct()
+                          .collect(Collectors.toList())
+          );
         }else if (trangThai == 1){
             List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(
                     false, Sort.by(Sort.Order.desc("thoiGianDat"))
@@ -157,31 +190,18 @@ public class KhachHangServiceImp implements KhachHangService {
     private Map<KhachHang,List<KhachHang>> listToMap(List<KhachHang> khachHangs){
         Map<KhachHang ,List<KhachHang>> map=new HashMap<>();
         for(KhachHang khachHang: khachHangs){
-            if (map.isEmpty()){
+
                 List<KhachHang> list=repoKhachHang.findByMaKhachHangAndXacNhan(
                         khachHang.getMaKhachHang(),
                         false
                 );
 
                 map.put(khachHang,list);
-            }else{
-                for (Iterator<KhachHang> it = map.keySet().iterator(); it.hasNext(); ) {
-                    KhachHang kh = it.next();
-                    if (kh.getMaKhachHang() != khachHang.getMaKhachHang()){
-                        List<KhachHang> list=repoKhachHang.findByMaKhachHangAndXacNhan(
-                                khachHang.getMaKhachHang(),
-                                false
-                        );
-                        map.put(khachHang,list);
-                        break;
-                    }
-                }
-            };
+                log.info("{}",list.size());
+            }
+        return map;
         }
 
-
-         return map;
-    }
 
     private LocalDateTime hien_gio(){
         return LocalDateTime.now();

@@ -68,7 +68,8 @@ body{
 
  .nav .add_product,
   .nav .confirm_product,
-  .nav .manager_customer{
+  .nav .manager_customer,
+  .nav .logout{
     display: flex;
     margin-top: 30px;
     height: 50px;
@@ -79,12 +80,14 @@ body{
  }
  .nav .add_product i,
  .nav .confirm_product i,
- .nav .manager_customer i{
+ .nav .manager_customer i,
+ .nav .logout i{
    font-size: 35px;
  }
  .nav .add_product a button,
  .nav .confirm_product a button,
- .nav .manager_customer a button{
+ .nav .manager_customer a button,
+ .nav .logout a button{
     height: 40px;
     width: 200px;
     color: white;
@@ -96,6 +99,7 @@ body{
  }
  .nav .add_product a button:hover,
  .nav .confirm_product a button:hover,
- .nav .manager_customer a button:hover{
+ .nav .manager_customer a button:hover,
+ .nav .logout a button:hover{
     color: green;
  }

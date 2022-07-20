@@ -1,5 +1,6 @@
 const check=document.querySelectorAll('.check')
 const mon_an=document.querySelectorAll('.mon_an')
+const mon_an_container=document.querySelectorAll('.mon_an_container')
 
 check.forEach((value,index) => {
      value.addEventListener('click',function(){
@@ -11,7 +12,7 @@ check.forEach((value,index) => {
 document.addEventListener('click',function(event){
     if (event.target === document.querySelector('body') ||
             event.target === document.querySelector('.content')){
-        mon_an.forEach((value) =>{
+        mon_an_container.forEach((value) =>{
            value.style.display='none'
         })
     }
@@ -19,8 +20,8 @@ document.addEventListener('click',function(event){
 
 function showMonAn(value){
     const mon_an =value.parentNode.querySelectorAll('.mon_an')
-    mon_an.forEach((vl) =>{
-        vl.style.display='flex'
+    mon_an_container.forEach((vl) =>{
+        vl.style.display='block'
     })
 }
 

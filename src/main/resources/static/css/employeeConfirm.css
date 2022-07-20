@@ -26,20 +26,23 @@
 
 
 
- .content table .mon_an {
+ .content table .mon_an_container {
     display: none;
     position: absolute;
-    font-size: 22px;
     background: rgba(4, 32, 123);
-    width: 800px;
-    align-items: center;
-    gap: 30px;
-    justify-content: center;
     top: 90px;
     right: 170px;
     z-index: 1;
  }
- .content table .mon_an img{
+ .content table .mon_an_container .mon_an{
+      margin-top:10px;
+      display:flex;
+      font-size: 22px;
+      width: 800px;
+      gap: 30px;
+      justify-content: center;
+ }
+ .content table .mon_an_container .mon_an img{
       width: 200px;
       height: 200px;
       border-radius: 50%;

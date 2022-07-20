@@ -43,6 +43,10 @@
     <i class="fa-solid fa-users"></i>
     <a href=""><button>Quản lý khách hàng</button></a>
   </div>
+  <div class="logout">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <a th:href="@{/logout}"><button>Đăng xuất</button></a>
+  </div>
 </div>
 <div class="content">
   <h1>Các đơn hàng cần xác nhận</h1>
@@ -61,10 +65,12 @@
       <th class="date_customer" th:text="${ds.key.thoiGianDat}"></th>
       <th>
         <button class="check">Xem</button>
-        <div class="mon_an" th:each="vl : ${ds.value}">
-          <img th:src="@{'/photos/memory-product/'+${vl.getMonAn().getTen()}+'.jpg'}" alt="">
-          <h6>Tên : <span th:text="${vl.getMonAn().getTen()}"></span></h6>
-          <h6>Số lượng : <span th:text="${vl.getSoLuong()}"></span></h6>
+        <div class="mon_an_container">
+          <div class="mon_an" th:each="vl : ${ds.value}">
+            <img th:src="@{'/photos/memory-product/'+${vl.getMonAn().getTen()}+'.jpg'}" alt="">
+            <h6>Tên : <span th:text="${vl.getMonAn().getTen()}"></span></h6>
+            <h6>Số lượng : <span th:text="${vl.getSoLuong()}"></span></h6>
+          </div>
         </div>
       </th>
       <th><button class="accept">Chấp nhận</button></th>
