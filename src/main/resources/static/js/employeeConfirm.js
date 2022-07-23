@@ -18,8 +18,15 @@ document.addEventListener('click',function(event){
 })
 
 function showMonAn(value){
+<<<<<<< HEAD
     const vl =value.parentNode.querySelector('.mon_an_container')
     vl.style.display='block'
+=======
+    const mon_an =value.parentNode.querySelectorAll('.mon_an')
+    mon_an_container.forEach((vl) =>{
+        vl.style.display='block'
+    })
+>>>>>>> origin/master
 }
 
 const khachHang={

@@ -153,7 +153,10 @@ public class KhachHangServiceImp implements KhachHangService {
             return khachHangs;
         }
     }
+<<<<<<< HEAD
     // Xu ly phan distinct
+=======
+>>>>>>> origin/master
     public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
@@ -183,12 +186,21 @@ public class KhachHangServiceImp implements KhachHangService {
          }
 * */
           return listToMap(
+<<<<<<< HEAD
                   khachHangs
                           .stream()
                           .filter(distinctByKey(a ->a.getMaKhachHang()))
                           .collect(Collectors.toList())
           );
 
+=======
+                  khachHangs.
+                          stream()
+                          .filter(distinctByKey(a ->a.getMaKhachHang()))
+                          .distinct()
+                          .collect(Collectors.toList())
+          );
+>>>>>>> origin/master
         }else if (trangThai == 1){
             List<KhachHang> khachHangs= repoKhachHang.findByXacNhan(
                     false, Sort.by(Sort.Order.desc("thoiGianDat"))
@@ -255,7 +267,14 @@ public class KhachHangServiceImp implements KhachHangService {
                 );
               //  log.info("{}",list.size());
                 map.put(khachHang,list);
+<<<<<<< HEAD
             }
+=======
+                log.info("{}",list.size());
+            }
+        return map;
+        }
+>>>>>>> origin/master
 
 /*
         log.info("{}",map.values()
@@ -266,7 +285,10 @@ public class KhachHangServiceImp implements KhachHangService {
         return map;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     private LocalDateTime hien_gio(){
         return LocalDateTime.now();
     }
